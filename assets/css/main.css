@@ -960,6 +960,33 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 40%);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*--------------------------------------------------------------
 # Portfolio Section
 --------------------------------------------------------------*/
@@ -1005,58 +1032,90 @@ section,
 
 .portfolio .portfolio-item {
   position: relative;
+  overflow: hidden; /* Pour éviter que l'image zoomée dépasse du conteneur */
 }
 
-.portfolio .portfolio-item .portfolio-info {
-  opacity: 0;
+/* Image qui remplit le cadre */
+.portfolio .portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Animation pour le zoom */
+}
+
+/* Effet de zoom sur hover */
+.portfolio .portfolio-item:hover img {
+  transform: scale(1.1); /* Zoom de 10% */
+}
+
+/* Titre masqué par défaut */
+.portfolio .portfolio-info {
   position: absolute;
-  left: 30px;
-  right: 30px;
   bottom: 0;
-  z-index: 3;
-  transition: all ease-in-out 0.3s;
-  background: color-mix(in srgb, var(--background-color), transparent 10%);
-  padding: 15px;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour le titre */
+  padding: 10px;
+  text-align: center;
+  z-index: 2;
+  opacity: 0; /* Masqué par défaut */
+  visibility: hidden; /* Masqué par défaut */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Transition pour l'apparition */
 }
 
-.portfolio .portfolio-item .portfolio-info h4 {
+/* Affiche le titre au survol de l'élément */
+.portfolio .portfolio-item:hover .portfolio-info {
+  opacity: 1; /* Rend visible */
+  visibility: visible; /* Rend visible */
+}
+
+/* Style du texte du titre */
+.portfolio .portfolio-info h4 {
+  color: #fff; /* Couleur du texte en blanc pour la lisibilité */
   font-size: 18px;
   font-weight: 600;
-  padding-right: 50px;
+  margin: 0;
 }
 
-.portfolio .portfolio-item .portfolio-info p {
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  font-size: 14px;
-  margin-bottom: 0;
-  padding-right: 50px;
-}
-
+/* Masquer les icônes de lien et de zoom */
 .portfolio .portfolio-item .portfolio-info .preview-link,
 .portfolio .portfolio-item .portfolio-info .details-link {
-  position: absolute;
-  right: 50px;
-  font-size: 24px;
-  top: calc(50% - 14px);
-  color: color-mix(in srgb, var(--default-color), transparent 30%);
-  transition: 0.3s;
-  line-height: 0;
+  display: none;
 }
 
-.portfolio .portfolio-item .portfolio-info .preview-link:hover,
-.portfolio .portfolio-item .portfolio-info .details-link:hover {
-  color: var(--accent-color);
-}
 
-.portfolio .portfolio-item .portfolio-info .details-link {
-  right: 14px;
-  font-size: 28px;
-}
 
-.portfolio .portfolio-item:hover .portfolio-info {
-  opacity: 1;
-  bottom: 20px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*--------------------------------------------------------------
 # Pricing Section
